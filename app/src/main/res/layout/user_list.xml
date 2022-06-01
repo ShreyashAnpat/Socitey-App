@@ -5,7 +5,8 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="85dp"
-    android:layout_margin="5dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImg"
@@ -59,14 +60,15 @@
         android:textSize="13sp"
         tools:ignore="HardcodedText" />
 
-    <TextView
+    <ImageView
         android:id="@+id/btnViewQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="20dp"
-        android:text="View QR"
+        android:src="@drawable/qrcode"
         android:textSize="10sp"
         tools:ignore="HardcodedText" />
 

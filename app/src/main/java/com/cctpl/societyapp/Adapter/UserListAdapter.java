@@ -38,26 +38,28 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list,parent,false);
         context = parent.getContext();
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.mFullName.setText(userData.get(position).getOwnerName());
+        holder.mFullName.setText(userData.get(position).getOwnerName().toString());
         holder.mFullName.setSelected(true);
-        holder.mBuildingNumber.setText(userData.get(position).getBuildingNumber());
+        holder.mBuildingNumber.setText(userData.get(position).getRoomNumber() + ", " + userData.get(position).getBuildingNumber());
         holder.mMobileNumber.setText(userData.get(position).getMobileNumber());
 
-        holder.mViewQR.setOnClickListener(new View.OnClickListener() {
+        holder.mRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                AppCompatActivity activity = (AppCompatActivity) context;
-//                Intent intent = new Intent(context, OwnerDetailActivity.class);
-//                intent.putExtra(Constant.MOBILE_NUMBER,historyData.get(position).getMobileNumber());
-//                activity.startActivity(intent);
+                AppCompatActivity activity = (AppCompatActivity) context;
+                Intent intent = new Intent(context, OwnerDetailActivity.class);
+                intent.putExtra(Constant.MOBILE_NUMBER,userData.get(position).getMobileNumber());
+                intent.putExtra(Constant.OWNER_NAME,userData.get(position).getOwnerName());
+                activity.startActivity(intent);
             }
         });
 
@@ -73,7 +75,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
         TextView mFullName;
         TextView mBuildingNumber;
-        TextView mViewQR;
+        ImageView mViewQR;
         ImageView mProfileImg;
         TextView mMobileNumber;
         RelativeLayout mRelativeLayout;

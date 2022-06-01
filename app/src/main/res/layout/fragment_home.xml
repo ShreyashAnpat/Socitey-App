@@ -26,59 +26,11 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
-        android:id="@+id/qrCodeLayout"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/qr_bg"
-        android:padding="20dp">
-
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="My QR Code"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
-
-        <ImageView
-            android:id="@+id/qrCode"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@id/text"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitXY" />
-
-        <ProgressBar
-            android:id="@+id/loader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="70dp"
-            android:indeterminateTint="@color/purple_200"
-            android:scaleType="fitXY" />
-
-    </RelativeLayout>
-
     <TextView
         android:id="@+id/hideQrCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/qrCodeLayout"
+        android:layout_below="@id/toolbar"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"

@@ -46,7 +46,6 @@ public class UserListFragment extends Fragment {
         userData = new ArrayList<>();
         userListAdapter = new UserListAdapter(userData);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView,new RecyclerView.State(), userListAdapter.getItemCount());
         recyclerView.setAdapter(userListAdapter);
 

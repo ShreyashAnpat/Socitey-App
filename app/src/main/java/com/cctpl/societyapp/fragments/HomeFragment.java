@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     TextView mHideQr;
     RelativeLayout mQrLayout;
-    ProgressBar mLoader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,27 +73,13 @@ public class HomeFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(Constant.USER_DATA,0);
         String MOBILE_NUMBER = sharedPreferences.getString(Constant.MOBILE_NUMBER,null);
 
-        mQRCode = view.findViewById(R.id.qrCode);
+
         mScanner = view.findViewById(R.id.scanner);
         recyclerView = view.findViewById(R.id.recycleView);
         mHideQr = view.findViewById(R.id.hideQrCode);
         mQrLayout = view.findViewById(R.id.qrCodeLayout);
-        mLoader = view.findViewById(R.id.loader);
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        mHideQr.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View view) {
-                if (mHideQr.getText().toString().equalsIgnoreCase("Hide QR Code")){
-                    mQrLayout.setVisibility(View.GONE);
-                    mHideQr.setText("Show QR Code");
-                }else {
-                    mQrLayout.setVisibility(View.VISIBLE);
-                    mHideQr.setText("Hide QR Code");
-                }
-            }
-        });
 
         mScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,28 +87,6 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext() , ScannerView.class));
             }
         });
-
-        firebaseFirestore.collection(Constant.USER_DATA).document(MOBILE_NUMBER)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
-                            String VEHICLE_NUMBER = task.getResult().get(Constant.VEHICLE_NUMBER).toString();
-                            try {
-                                Bitmap bitmap = encodeAsBitmap(VEHICLE_NUMBER);
-                                mQRCode.setImageBitmap(bitmap);
-                                mLoader.setVisibility(View.GONE);
-                            } catch (WriterException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
 
         loadHistory();
 
@@ -153,26 +116,4 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    Bitmap encodeAsBitmap(String str) throws WriterException {
-        BitMatrix result;
-        try {
-            result = new MultiFormatWriter().encode(str,
-                    BarcodeFormat.QR_CODE, 356, 356, null);
-        } catch (IllegalArgumentException iae) {
-            // Unsupported format
-            return null;
-        }
-        int w = result.getWidth();
-        int h = result.getHeight();
-        int[] pixels = new int[w * h];
-        for (int y = 0; y < h; y++) {
-            int offset = y * w;
-            for (int x = 0; x < w; x++) {
-                pixels[offset + x] = result.get(x, y) ? WHITE : TRANSPARENT;
-            }
-        }
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, 356, 0, 0, w, h);
-        return bitmap;
-    }
 }

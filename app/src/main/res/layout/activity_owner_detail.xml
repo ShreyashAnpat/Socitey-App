@@ -14,140 +14,191 @@
         app:title="Owner Details"
         app:titleTextColor="@color/white"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImg"
-        android:visibility="gone"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        app:civ_border_width="1dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ownerNameLayout"
-        android:layout_below="@id/profileImg"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        app:boxBackgroundColor="@color/white"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Owner Name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        tools:ignore="HardcodedText">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
-        <EditText
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ownerName"
-            android:editable="false"/>
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <RelativeLayout
+                android:id="@+id/qrCodeLayout"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/qr_bg"
+                android:padding="20dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/vehicleDetailsLayout"
-        android:layout_below="@id/ownerNameLayout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle Details"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        tools:ignore="HardcodedText">
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text=""
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/vehicleDetails"
-            android:editable="false"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                    android:id="@+id/qrCode"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_below="@id/text"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/vehicleNumberLayout"
-        android:layout_below="@id/vehicleDetailsLayout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle Number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        tools:ignore="HardcodedText">
+                <ProgressBar
+                    android:id="@+id/loader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="70dp"
+                    android:indeterminateTint="@color/white"
+                    android:scaleType="fitXY" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/vehicleNumber"
-            android:editable="false"/>
+            </RelativeLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/mobileNumberLayout"
-        android:layout_below="@id/vehicleNumberLayout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mobile Number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        tools:ignore="HardcodedText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ownerNameLayout"
+                android:layout_below="@id/qrCodeLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                app:boxBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Owner Name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                tools:ignore="HardcodedText">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/mobileNumber"
-            android:editable="false"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ownerName"
+                    android:editable="false"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/buildingNumberLayout"
-        android:layout_below="@id/mobileNumberLayout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Building Number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        tools:ignore="HardcodedText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicleDetailsLayout"
+                android:layout_below="@id/ownerNameLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                app:boxBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle Details"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                tools:ignore="HardcodedText">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buildingNumber"
-            android:editable="false"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vehicleDetails"
+                    android:editable="false"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/roomNumberLayout"
-        android:layout_below="@id/buildingNumberLayout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        app:boxBackgroundColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Room Number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        tools:ignore="HardcodedText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicleNumberLayout"
+                android:layout_below="@id/vehicleDetailsLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                app:boxBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                tools:ignore="HardcodedText">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/roomNumber"
-            android:editable="false"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vehicleNumber"
+                    android:editable="false"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mobileNumberLayout"
+                android:layout_below="@id/vehicleNumberLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                app:boxBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                tools:ignore="HardcodedText">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mobileNumber"
+                    android:editable="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/buildingNumberLayout"
+                android:layout_below="@id/mobileNumberLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                app:boxBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Building Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                tools:ignore="HardcodedText">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buildingNumber"
+                    android:editable="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/roomNumberLayout"
+                android:layout_below="@id/buildingNumberLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                app:boxBackgroundColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Room Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                tools:ignore="HardcodedText">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/roomNumber"
+                    android:editable="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

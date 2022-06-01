@@ -10,13 +10,13 @@ public class UserData {
     String VehicleNumber;
     String MobileNumber;
     String TimeStamp;
-    String STATUS;
+    String Verify;
     String Vehicle;
 
     public UserData() {
     }
 
-    public UserData(String ownerName, String buildingNumber, String roomNumber, String ownerType, String vehicleDetails, String vehicleNumber, String mobileNumber, String timeStamp, String status, String vehicle) {
+    public UserData(String ownerName, String buildingNumber, String roomNumber, String ownerType, String vehicleDetails, String vehicleNumber, String mobileNumber, String timeStamp, String verify, String vehicle) {
         OwnerName = ownerName;
         BuildingNumber = buildingNumber;
         RoomNumber = roomNumber;
@@ -25,7 +25,7 @@ public class UserData {
         VehicleNumber = vehicleNumber;
         MobileNumber = mobileNumber;
         TimeStamp = timeStamp;
-        STATUS = status;
+        Verify = verify;
         Vehicle = vehicle;
     }
 
@@ -93,12 +93,12 @@ public class UserData {
         TimeStamp = timeStamp;
     }
 
-    public String getSTATUS() {
-        return STATUS;
+    public String getVerify() {
+        return Verify;
     }
 
-    public void setSTATUS(String STATUS) {
-        this.STATUS = STATUS;
+    public void setVerify(String verify) {
+        Verify = verify;
     }
 
     public String getVehicle() {
