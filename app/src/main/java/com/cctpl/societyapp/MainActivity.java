@@ -1,121 +1,130 @@
 package com.cctpl.societyapp;
 
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.TRANSPARENT;
-import static android.graphics.Color.WHITE;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
-import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cctpl.societyapp.fragments.FeedbackFragment;
+import com.cctpl.societyapp.fragments.HomeFragment;
+import com.cctpl.societyapp.fragments.UserListFragment;
 import com.cctpl.societyapp.utils.Constant;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView mQRCode;
+    NavigationView nav;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
     ImageView mScanner;
-    FirebaseFirestore firebaseFirestore;
+    Fragment selectFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(Constant.USER_DATA,0);
-        String MOBILE_NUMBER = sharedPreferences.getString(Constant.MOBILE_NUMBER,null);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mQRCode = findViewById(R.id.qrCode);
         mScanner = findViewById(R.id.scanner);
-        firebaseFirestore = FirebaseFirestore.getInstance();
-
         mScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this , ScannerView.class));
             }
         });
+        nav = findViewById(R.id.navMenu);
+        drawerLayout = findViewById(R.id.drawer);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.Open,R.string.Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        firebaseFirestore.collection(Constant.USER_DATA).document(MOBILE_NUMBER)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
-                    String VEHICLE_NUMBER = task.getResult().get(Constant.VEHICLE_NUMBER).toString();
-                    try {
-                        Bitmap bitmap = encodeAsBitmap(VEHICLE_NUMBER);
-                        mQRCode.setImageBitmap(bitmap);
-                    } catch (WriterException e) {
-                        e.printStackTrace();
-                    }
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                removeColor(nav);
+
+                item.setChecked(true);
+
+                switch (item.getItemId()){
+                    case R.id.dashboard:
+                        selectFragment = new HomeFragment();
+                        break;
+                    case R.id.scanner:
+                        startActivity(new Intent(MainActivity.this,ScannerView.class));
+                        break;
+                    case R.id.register:
+                        startActivity(new Intent(MainActivity.this,RegisterActivity.class));
+                        break;
+                    case R.id.userList:
+                        selectFragment = new UserListFragment();
+                        break;
+                    case R.id.feedback:
+                        selectFragment = new FeedbackFragment();
+                        break;
+                    case R.id.logout :
+                        logOut();
+                        break;
                 }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                if (selectFragment != null){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectFragment).addToBackStack(null).commit();
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
             }
         });
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
 
-
-
-//        mVehicleNumber.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ClipboardManager clipboard = (ClipboardManager) getSystemService(MainActivity.CLIPBOARD_SERVICE);
-//                try {
-//                    CharSequence textToPaste = clipboard.getPrimaryClip().getItemAt(0).getText();
-//                    mVehicleNumber.setText(textToPaste);
-//
-//                } catch (Exception e) {
-//                    Toast.makeText(MainActivity.this, "Please Copy Address", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//            }
-//
-//        });
     }
 
-    Bitmap encodeAsBitmap(String str) throws WriterException {
-        BitMatrix result;
-        try {
-            result = new MultiFormatWriter().encode(str,
-                    BarcodeFormat.QR_CODE, 356, 356, null);
-        } catch (IllegalArgumentException iae) {
-            // Unsupported format
-            return null;
-        }
-        int w = result.getWidth();
-        int h = result.getHeight();
-        int[] pixels = new int[w * h];
-        for (int y = 0; y < h; y++) {
-            int offset = y * w;
-            for (int x = 0; x < w; x++) {
-                pixels[offset + x] = result.get(x, y) ? WHITE : TRANSPARENT;
-            }
-        }
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, 356, 0, 0, w, h);
-        return bitmap;
+    private void logOut() {
+
+        new AlertDialog.Builder(this)
+                .setIcon(R.mipmap.ic_launcher)
+                .setTitle("Society App")
+                .setMessage("Are you sure to logout ?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences sharedPreferences = getSharedPreferences(Constant.USER_DATA,MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.commit();
+                        Toast.makeText(getApplicationContext(), "LogOut Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
     }
+
+    private void removeColor(NavigationView view) {
+        for (int i = 0; i < view.getMenu().size(); i++) {
+            MenuItem item = view.getMenu().getItem(i);
+            item.setChecked(false);
+        }
+    }
+
+
 }

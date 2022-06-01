@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SocietyApp">
         <activity
+            android:name=".OwnerDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ScannerView"
             android:exported="false" />
         <activity

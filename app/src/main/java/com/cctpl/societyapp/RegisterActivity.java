@@ -8,9 +8,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cctpl.societyapp.utils.Constant;
@@ -30,8 +34,14 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mVehicleDetails;
     EditText mMobileNumber;
     Button mBtnUploadDetails;
+    RadioButton mOwner;
+    RadioButton mRent;
+    RadioButton mBachelor;
     ProgressBar mLoader;
     FirebaseFirestore firebaseFirestore;
+
+    String[] Vehicle = {"Select Vehicle Type","2 Wheeler" ,"3 Wheeler","4 Wheeler","Other"};
+    String VEHICLE = "Select Vehicle Type",OWNER_TYPE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +56,49 @@ public class RegisterActivity extends AppCompatActivity {
         mMobileNumber = findViewById(R.id.mobileNumber);
         mBtnUploadDetails = findViewById(R.id.btnUploadDetails);
         mLoader = findViewById(R.id.loader);
+        mOwner = findViewById(R.id.owner);
+        mRent = findViewById(R.id.rent);
+        mBachelor = findViewById(R.id.bachelor);
         firebaseFirestore = FirebaseFirestore.getInstance();
+
+        mOwner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OWNER_TYPE = "OWNER";
+            }
+        });
+        mRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OWNER_TYPE = "RENT";
+            }
+        });
+        mBachelor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OWNER_TYPE = "BACHELOR";
+            }
+        });
+
+        Spinner vehicleSpinner = findViewById(R.id.spinner);
+
+        vehicleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                VEHICLE = Vehicle[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter vehicleAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,Vehicle);
+        vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        vehicleSpinner.setAdapter(vehicleAdapter);
+
 
         mBtnUploadDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,19 +109,22 @@ public class RegisterActivity extends AppCompatActivity {
                 String VEHICLE_NUMBER = mVehicleNumber.getText().toString();
                 String VEHICLE_DETAILS = mVehicleDetails.getText().toString();
                 String MOBILE_NUMBER = mMobileNumber.getText().toString();
-
-                if (TextUtils.isEmpty(OWNER_NAME)){
+                if (TextUtils.isEmpty(OWNER_TYPE)){
+                    Toast.makeText(RegisterActivity.this, "Select ownership type", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(OWNER_NAME)){
                     mOwnerName.setError("Owner Name");
                 }else if(TextUtils.isEmpty(BUILDING_NUMBER)){
                     mBuildingNumber.setError("Building Number");
                 }else if (TextUtils.isEmpty(ROOM_NUMBER)){
                     mRoomNumber.setError("Room Number");
-                }else if (TextUtils.isEmpty(VEHICLE_NUMBER)){
-                    mVehicleNumber.setError("Vehicle Number");
+                }else if (VEHICLE.equalsIgnoreCase("Select Vehicle Type")){
+                    Toast.makeText(RegisterActivity.this, "Select Vehicle Type", Toast.LENGTH_SHORT).show();
                 }else if (TextUtils.isEmpty(VEHICLE_DETAILS)){
                     mVehicleDetails.setError("Vehicle Details");
+                }else if (TextUtils.isEmpty(VEHICLE_NUMBER)){
+                    mVehicleNumber.setError("Vehicle Number");
                 }else if (TextUtils.isEmpty(MOBILE_NUMBER)){
-                    mMobileNumber.setError("Moblie Number");
+                    mMobileNumber.setError("Mobile Number");
                 }else {
                     uploadData(OWNER_NAME,BUILDING_NUMBER,ROOM_NUMBER,VEHICLE_NUMBER,VEHICLE_DETAILS,MOBILE_NUMBER);
                     mBtnUploadDetails.setVisibility(View.GONE);
@@ -92,6 +147,9 @@ public class RegisterActivity extends AppCompatActivity {
         map.put(Constant.VEHICLE_DETAILS,vehicle_details);
         map.put(Constant.MOBILE_NUMBER,"+91" + mobile_number);
         map.put(Constant.TIMESTAMP, String.valueOf(System.currentTimeMillis()));
+        map.put(Constant.VEHICLE,VEHICLE);
+        map.put(Constant.OWNER_TYPE,OWNER_TYPE);
+        map.put(Constant.VERIFY,"false");
 
         SharedPreferences sharedPreferences = getSharedPreferences(Constant.USER_DATA,0);
         SharedPreferences.Editor editor = sharedPreferences.edit();

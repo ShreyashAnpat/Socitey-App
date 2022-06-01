@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In/Out Entry"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Owner Details"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:layout_below="@id/divider"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text"
+            android:layout_marginTop="15dp"
+            android:text="Loading..."
+            android:textColor="@color/purple_200"
+            tools:ignore="HardcodedText" />
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGrp"
+            android:orientation="horizontal"
+            android:layout_below="@id/data">
+
+            <RadioButton
+                android:id="@+id/in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IN"
+                tools:ignore="HardcodedText" />
+
+            <RadioButton
+                android:id="@+id/out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="OUT"
+                tools:ignore="HardcodedText" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGrp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/purple_200"
+            android:text="Entry"
+            tools:ignore="HardcodedText" />
+
+        <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGrp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

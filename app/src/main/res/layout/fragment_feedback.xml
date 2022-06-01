@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.FeedbackFragment">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/feedbackLayout"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Feedback"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/feedback"
+            android:gravity="start"
+            android:inputType="textCapWords"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_below="@id/feedbackLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="Submit"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>

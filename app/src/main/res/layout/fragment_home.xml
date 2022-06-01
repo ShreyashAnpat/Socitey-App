@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white">
+
+        <ImageView
+            android:id="@+id/scanner"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/scanner" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/qrCodeLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/qr_bg"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="My QR Code"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+
+        <ImageView
+            android:id="@+id/qrCode"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@id/text"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY" />
+
+        <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="70dp"
+            android:indeterminateTint="@color/purple_200"
+            android:scaleType="fitXY" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/hideQrCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qrCodeLayout"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:text="Hide QR Code"
+        android:visibility="gone"
+        android:textColor="@color/purple_500"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qrCodeLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="IN/OUT History"
+        android:textColor="@color/purple_200"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/text2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycleView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text2"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:drawableTop="@drawable/car"
+        android:gravity="center"
+        android:text="Data not found"
+        android:textColor="@color/purple_500"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>

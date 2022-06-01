@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    android:layout_margin="5dp">
+
+    <ImageView
+        android:id="@+id/statusImg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/car" />
+
+    <TextView
+        android:id="@+id/carName"
+        android:layout_width="170dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:ellipsize="marquee"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:fadingEdge="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/statusImg"
+        android:text="Car Name"
+        android:textColor="@color/purple_200"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/carNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carName"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/statusImg"
+        android:text="Car Number"
+        android:textColor="@color/purple_500"
+        android:textSize="13sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carNumber"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/statusImg"
+        android:text="IN"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
+        android:textSize="13sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="09 JUL\n09:00PM"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

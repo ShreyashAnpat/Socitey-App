@@ -11,4 +11,10 @@ public class Constant {
     public static String MOBILE_NUMBER = "MobileNumber";
     public static String TIMESTAMP = "TimeStamp";
     public static String LOGGED_IN = "LoggedIn";
+    public static String VERIFY = "Verify";
+    public static String ENTRY = "Entry";
+    public static String STATUS = "STATUS";
+    public static String FEEDBACK = "Feedback";
+    public static String VEHICLE = "Vehicle";
+    public static String OWNER_TYPE = "OwnerType";
 }

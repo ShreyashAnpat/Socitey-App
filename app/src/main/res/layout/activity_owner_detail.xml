@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OwnerDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        app:title="Owner Details"
+        app:titleTextColor="@color/white"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImg"
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:civ_border_width="1dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ownerNameLayout"
+        android:layout_below="@id/profileImg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Owner Name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ownerName"
+            android:editable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/vehicleDetailsLayout"
+        android:layout_below="@id/ownerNameLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vehicle Details"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vehicleDetails"
+            android:editable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/vehicleNumberLayout"
+        android:layout_below="@id/vehicleDetailsLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vehicle Number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vehicleNumber"
+            android:editable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mobileNumberLayout"
+        android:layout_below="@id/vehicleNumberLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile Number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mobileNumber"
+            android:editable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/buildingNumberLayout"
+        android:layout_below="@id/mobileNumberLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Building Number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buildingNumber"
+            android:editable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/roomNumberLayout"
+        android:layout_below="@id/buildingNumberLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Room Number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        tools:ignore="HardcodedText">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomNumber"
+            android:editable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</RelativeLayout>

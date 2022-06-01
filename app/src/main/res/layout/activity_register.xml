@@ -4,149 +4,204 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     tools:context=".RegisterActivity">
 
-    <TextView
-        android:id="@+id/title"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textColor="@color/purple_200"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textSize="22sp"
-        tools:ignore="HardcodedText" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ownerNameLayout"
-        android:layout_below="@id/title"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Owner Name"
-        app:boxBackgroundColor="@color/white"
-        tools:ignore="HardcodedText">
-
-        <EditText
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ownerName"
-            android:inputType="textCapWords"/>
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/title"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textAllCaps="true"
+                android:textColor="@color/purple_200"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/buildingNumberLayout"
-        android:layout_below="@id/ownerNameLayout"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Building Number"
-        app:boxBackgroundColor="@color/white"
-        tools:ignore="HardcodedText">
+            <RadioGroup
+                android:layout_below="@id/title"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radioGrp1">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buildingNumber"
-            android:inputType="textCapWords"
-            tools:ignore="TextFields" />
+                <RadioButton
+                    android:id="@+id/owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Owner"
+                    android:buttonTint="@color/purple_200"
+                    tools:ignore="HardcodedText" />
+                <RadioButton
+                    android:id="@+id/rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/purple_200"
+                    android:text="Rent"
+                    tools:ignore="HardcodedText" />
+                <RadioButton
+                    android:id="@+id/bachelor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/purple_200"
+                    android:text="Bachelor"
+                    tools:ignore="HardcodedText" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </RadioGroup>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/roomNumberLayout"
-        android:layout_below="@id/buildingNumberLayout"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Room Number"
-        app:boxBackgroundColor="@color/white"
-        tools:ignore="HardcodedText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ownerNameLayout"
+                android:layout_below="@id/radioGrp1"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full Name"
+                app:boxBackgroundColor="@color/white"
+                tools:ignore="HardcodedText">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/roomNumber"
-            android:inputType="number"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ownerName"
+                    android:inputType="textCapWords"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/vehicleNumberLayout"
-        android:layout_below="@id/roomNumberLayout"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle Number"
-        app:boxBackgroundColor="@color/white"
-        tools:ignore="HardcodedText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/buildingNumberLayout"
+                android:layout_below="@id/ownerNameLayout"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Building Number"
+                app:boxBackgroundColor="@color/white"
+                tools:ignore="HardcodedText">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/vehicleNumber"
-            android:inputType="textCapCharacters"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buildingNumber"
+                    android:inputType="textCapWords"
+                    tools:ignore="TextFields" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/vehicleDetailsLayout"
-        android:layout_below="@id/vehicleNumberLayout"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle Details"
-        app:boxBackgroundColor="@color/white"
-        tools:ignore="HardcodedText">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/roomNumberLayout"
+                android:layout_below="@id/buildingNumberLayout"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Room Number"
+                app:boxBackgroundColor="@color/white"
+                tools:ignore="HardcodedText">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/vehicleDetails"
-            android:inputType="textCapWords"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/roomNumber"
+                    android:inputType="numberDecimal"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/mobileNumberLayout"
-        android:layout_below="@id/vehicleDetailsLayout"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mobile Number"
-        app:boxBackgroundColor="@color/white"
-        tools:ignore="HardcodedText">
+            <Spinner
+                android:id="@+id/spinner"
+                android:background="@drawable/spinner_bg"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/roomNumberLayout"
+                android:layout_marginTop="20dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/mobileNumber"
-            android:inputType="phone"
-            android:maxLength="11"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicleDetailsLayout"
+                android:layout_below="@id/spinner"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle Name"
+                app:boxBackgroundColor="@color/white"
+                tools:ignore="HardcodedText">
 
-    </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vehicleDetails"
+                    android:inputType="textCapWords"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicleNumberLayout"
+                android:layout_below="@id/vehicleDetailsLayout"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle Number"
+                app:boxBackgroundColor="@color/white"
+                tools:ignore="HardcodedText">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vehicleNumber"
+                    android:inputType="textCapCharacters"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mobileNumberLayout"
+                android:layout_below="@id/vehicleNumberLayout"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                app:boxBackgroundColor="@color/white"
+                tools:ignore="HardcodedText">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mobileNumber"
+                    android:inputType="phone"
+                    android:maxLength="11"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
-        android:id="@+id/btnUploadDetails"
-        android:backgroundTint="@color/purple_200"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mobileNumberLayout"
-        android:layout_marginTop="50dp"
-        android:text="Upload Details"
-        tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/btnUploadDetails"
+                android:backgroundTint="@color/purple_200"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mobileNumberLayout"
+                android:layout_marginTop="50dp"
+                android:text="Upload Details"
+                tools:ignore="HardcodedText" />
 
-    <ProgressBar
-        android:id="@+id/loader"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mobileNumberLayout"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/purple_200"
-        android:layout_centerHorizontal="true"/>
+            <ProgressBar
+                android:id="@+id/loader"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mobileNumberLayout"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/purple_200"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
